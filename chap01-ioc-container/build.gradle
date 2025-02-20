@@ -1,0 +1,53 @@
+plugins {
+    id 'java'
+}
+
+group = 'com.ohgiraffers'
+version = '1.0-SNAPSHOT'
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    testImplementation platform('org.junit:junit-bom:5.10.0')
+    testImplementation 'org.junit.jupiter:junit-jupiter'
+
+    /* 설명. Spring Framework(Legacy) 수업을 위한 의존성 5개 */
+    // https://mvnrepository.com/artifact/org.springframework/spring-core
+    implementation 'org.springframework:spring-core:6.2.3'
+    // https://mvnrepository.com/artifact/org.springframework/spring-context
+    implementation 'org.springframework:spring-context:6.2.3'
+    // https://mvnrepository.com/artifact/org.springframework/spring-beans
+    implementation 'org.springframework:spring-beans:6.2.3'
+    // https://mvnrepository.com/artifact/org.springframework/spring-expression
+    implementation 'org.springframework:spring-expression:6.2.3'
+    // https://mvnrepository.com/artifact/org.springframework/spring-aop
+    implementation 'org.springframework:spring-aop:6.2.3'
+
+    /* Note. Gradle의 의존성 설정 시 굉장히 많은 옵션을 부여할 수 있는데,
+     *  그 중 가장 많이 사용되는 옵션 세 가지를 살펴본다.
+     *  1. compileOnly
+     *    - 해당 라이브러리가 컴파일 타임에만 필요할 때 정의.
+     *    - 빌드 결과물(jar, ear, war 등)에는 포함되지 않음.
+     *    - 주로 컴파일 시 필요한 어노테이션 기반 처리기(annotation processors)나 인터페이스 정의 등에 사용됨.
+     *  2. annotationProcessor
+     *    - 해당 라이브러리가 어노테이션 프로세싱 시 필요할 때 정의.
+     *    - 컴파일러가 어노테이션을 처리하는 데 사용됨.
+     *    - 주로 컴파일 타임 코드 생성 라이브러리에서 사용됨.
+     *  3. implementation
+     *    - 해당 라이브러리가 컴파일타임 뿐만 아니라 런타임에도 필요할 때 정의.
+     *    - 위에서 살펴본 compileOnly나 annotationProcessor 등과 같은 특별한 목적이 아닐 때
+     *      일반적으로 가장 많이 정의하는 라이브러리 의존설 설정값.
+     * */
+    // https://mvnrepository.com/artifact/org.projectlombok/lombok
+    implementation 'org.projectlombok:lombok:1.18.30'
+    annotationProcessor 'org.projectlombok:lombok:1.18.30'
+    /* 롬복 버전 사용하려면 두 개 다 작성해야 한다.*/
+
+
+}
+
+test {
+    useJUnitPlatform()
+}

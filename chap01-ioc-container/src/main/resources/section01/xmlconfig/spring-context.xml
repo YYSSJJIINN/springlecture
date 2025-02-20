@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+    <!--
+    Note. Bean Schema 링크:
+    https://docs.spring.io/spring-framework/reference/core/appendix/xsd-schemas.html#xsd-schemas-beans\
+    Spring Framework Docs -> Core Technologies -> Appendix -> XML Schemas -> The Beans Schema
+     -->
+    <!--
+Note. XML 스키마 종류
+    1. context 스키마
+    : 애플리케이션 컨텍스트와 관련된 설정을 담당하며, 자동 빈 등록, 어노테이션 설정, 프로퍼티 파일 로드 등의 기능을 제공.
+    2. Beans 스키마
+    : Spring의 Core Container 설정을 담당하며, bean 정의, 의존성 주입, scope 설정, life-cycle 콜백 설정 등
+    애플리케이션의 전체적인 'bean management'를 제공한다.
+    3. aop 스키마
+    : AOP 설정을 담당하며, 횡단 관심사 처리, 애스펙트 정의, 포인트컷 설정 등의 기능을 제공.
+    4. util 스키마
+    : 유틸리티 기능을 설정하는 데 사용되며 List, Map, Properties 등의 컬렉션 자료구조를 XML로 정의할 때 유용함.
+   -->
+
+    <!-- MemberDTO를 member라는 식별자의 bean으로 등록 -->
+    <!-- 기본 생성자를 호출해서 bean 객체를 인스턴스화 해줌 -->
+    <bean id="member-d" class="com.ohgiraffers.common.MemberDTO"/>
+    <!-- 모든 매개변수 있는 생성자를 호출해서 bean 객체를 인스턴스화 해줌 -->
+    <bean id="member-a" class="com.ohgiraffers.common.MemberDTO">
+        <constructor-arg index="0" value="1"/>
+        <constructor-arg name="id" value="user01"/>
+        <constructor-arg index="2" value="pass01"/>
+        <!-- 엘리먼트로 쓰지말고 attribute로 쓰라고 권장경고 뜬다. -->
+        <!--<constructor-arg index="2">
+            <value>pass01</value>
+        </constructor-arg>-->
+        <constructor-arg name="name" value="홍길동"/>
+    </bean>
+
+</beans>

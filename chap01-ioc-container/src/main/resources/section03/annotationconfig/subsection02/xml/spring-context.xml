@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xsi:schemaLocation="
+		http://www.springframework.org/schema/beans https://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/context https://www.springframework.org/schema/context/spring-context.xsd">
+
+    <!--
+    Note. Context Schema 링크:
+    https://docs.spring.io/spring-framework/reference/core/appendix/xsd-schemas.html#xsd-schemas-context
+    Spring Framework Docs -> Core Technologies -> Appendix -> XML Schemas -> The Context Schema
+    -->
+
+    <!-- Context Schema를 추가해서 XML 설정 파일에서 @ComponentScan과 동일한 설정을 진행할 수 있다. -->
+    <context:component-scan base-package="com.ohgiraffers">
+        <!-- 필터링을 통해 MemberDAO 클래스를 제외시켰으므로 Application의 main 메서드에서 getBEan을 호출하는 부분에 오류가 발생할 것이다. -->
+        <context:exclude-filter type="assignable" expression="com.ohgiraffers.common.MemberDAO"/>
+    </context:component-scan>
+</beans>
