@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+    <!--
+        bean 요소의 class 속성은 인터페이스 타입이 아닌
+        실제 구현 클래스 타입 PersonalAccount를 지정해줘야한다.
+        MemberDTO에서는 필드로 PersonalAccount를 지정할 때
+        다형성을 고려해 인터페이스를 타입으로 걸어주었지만,
+        실제 인스턴스를 생성할 수 있는 것은 생성자가 존재하는 클래스이기 때문이다.
+    -->
+    <bean id="account" class="com.ohgiraffers.common.PersonalAccount">
+        <constructor-arg index="0" value="4"/>
+        <constructor-arg index="1" value="01039268125707"/>
+    </bean>
+
+    <!-- 1. 생성자 주입 방식으로 DI 구현 -->
+<!--    <bean id="member" class="com.ohgiraffers.common.MemberDTO">-->
+        <!-- 아래의 내용 적기 전까진 커피콩 아이콘이 기본생성자에게 있었지만 -->
+        <!-- 작성 후에는 매개변수 있는 생성자에게로 넘어간다. -->
+<!--        <constructor-arg index="0" value="1"/>-->
+<!--        <constructor-arg index="1" value="홍길동"/>-->
+<!--        <constructor-arg index="2" value="010-1234-5678"/>-->
+<!--        <constructor-arg index="3" value="hong.gildong@gmail.com"/>-->
+<!--        <constructor-arg index="4" ref="account"/>-->
+<!--    </bean>-->
+
+    <!-- 2. ssetter 주입 방식으로 DI 구현 -->
+    <bean id="member" class="com.ohgiraffers.common.MemberDTO">
+        <property name="sequence" value="1"/>
+        <property name="name" value="홍길동"/>
+        <property name="phone" value="010-1234-5678"/>
+        <property name="email" value="hong.gildong@gmail.com"/>
+        <property name="personalAccount" ref="account"/>
+    </bean>
+
+    <!-- 생성된 다른 bean을 의존성 주입하고 싶을 때는 value 어트리뷰트가 아닌 ref를 사용해서 bean id를 전달하면 된다.-->
+</beans>
