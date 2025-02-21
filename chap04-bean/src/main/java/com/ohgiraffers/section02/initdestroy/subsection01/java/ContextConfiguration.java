@@ -1,4 +1,4 @@
-package com.ohgiraffers.section01.scope.subsection01.singleton;
+package com.ohgiraffers.section02.initdestroy.subsection01.java;
 
 import com.ohgiraffers.common.Beverage;
 import com.ohgiraffers.common.Bread;
@@ -29,10 +29,13 @@ public class ContextConfiguration {
     }
 
     @Bean
-//    @Scope("")
-//    @Scope("singleton")
     @Scope("prototype")
     public ShoppingCart cart() {
         return new ShoppingCart();
+    }
+
+    @Bean(initMethod = "openShop", destroyMethod = "closeShop")
+    public Owner owner() {
+        return new Owner();
     }
 }

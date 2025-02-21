@@ -25,9 +25,14 @@ dependencies {
     // https://mvnrepository.com/artifact/org.springframework/spring-aop
     implementation 'org.springframework:spring-aop:6.2.3'
 
-    /* section02/subsection04/resource에서 사용하는 Jakarta Annotation API 의존성*/
+    /* chap03/section02/subsection04/resource에서 사용하는 Jakarta Annotation API 의존성*/
     // https://mvnrepository.com/artifact/jakarta.annotation/jakarta.annotation-api
     implementation 'jakarta.annotation:jakarta.annotation-api:2.1.1'
+
+    /* @PostConstruct 및 @PreDestroy 사용을 위한 Jakarta Annotation API*/
+    // https://mvnrepository.com/artifact/jakarta.annotation/jakarta.annotation-api
+    implementation 'jakarta.annotation:jakarta.annotation-api:2.1.1'
+
 
     /* section02/subsection05/inject에서 사용하는 Jakarta Inject API 의존성 */
     // https://mvnrepository.com/artifact/jakarta.inject/jakarta.inject-api

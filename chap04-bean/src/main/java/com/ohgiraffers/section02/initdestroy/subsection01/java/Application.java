@@ -1,4 +1,4 @@
-package com.ohgiraffers.section01.scope.subsection01.singleton;
+package com.ohgiraffers.section02.initdestroy.subsection01.java;
 
 import com.ohgiraffers.common.Beverage;
 import com.ohgiraffers.common.Bread;
@@ -7,17 +7,6 @@ import com.ohgiraffers.common.ShoppingCart;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 
-/* 필기. Bean Scope:
- *  스프링 bean이 생성될 때 생성되는 인스턴스의 범위를 의미한다. 스프링에서는 다양한 Bean scope를 제공한다.
- *  - Singleton: 하나의 인스턴스만을 생성하고, 모든 bean이 해당 인스턴스를 공유하여 사용한다.
- *  - prototype: 매번 새로운 인스턴스를 생성한다.
- *  - request: HTTP 요청을 처리할 때마다 새로운 인스턴스를 생성하고, 요청 처리가 끝나면 인스턴스를 폐기한다.
- *             웹 애플리케이션 컨텍스트에만 해당된다.
- *  - session: HTTP 세션 당 하나의 인스턴스를 생성하고, 세션이 종료되면 인스턴스를 폐기한다.
- *             웹 애플리케이션 컨텍스트에만 해당된다.
- *  - globalSession: 전역 세션 당 하나의 인스턴스를 생성하고, 전역 세션이 종료되면 인스턴스를 폐기한다.
- *                   포털 애플리케이션 컨텍스트에만 해당된다.
- * */
 public class Application {
 
     public static void main(String[] args) {
@@ -63,17 +52,20 @@ public class Application {
         System.out.println("cart2의 hashcode : " + cart2.hashCode());
 
         /* 설명.
-         *  스프링 컨테이너(IoC Container)는 Bean의 기본 스코프를 singleton으로 관리한다.
-         *  singleton 스코프를 갖는 Bean은 애플리케이션 컨텍스트 내에서 유일한 인스턴스를 갖는다.
-         *  (즉, 애플리케이션 내에서 이 bean을 요청할 때마다 동일한 인스턴스가 반환됨)
-         *  =========================================================================================
-         *  이 예제에서 손님 두 명이 각각 쇼핑 카트를 이용해 상품을 담았을 때,
-         *  singleton으로 관리되는 cart bean은 두 손님이 동일한 카트를 공유하게 된다.
-         *  따라서, cart1과 cart2는 동일한 인스턴스를 참조하며, 두 카트에 담긴 물품도 동일하다.
-         *  =========================================================================================
-         * Note.
-         *  만약 카트를 손님별로 독립적으로 사용하고 싶다면, cart 빈을 prototype 스코프로 설정해야 한다.
-         *  prototype 스코프를 사용하면 빈을 요청할 때마다 새로운 인스턴스가 생성되어 반환된다.
+         *  init 메서드는 bean 객체가 생성될 때(=IoC 컨테이너 초기화 시) 호출되며, 이 시점에 초기화 작업을 수행할 수 있다.
+         *  이 메서드는 bean이 컨테이너에 의해 생성되고, 의존성 주입이 완료된 직후에 실행된다.
+         *  반면, destroy 메서드는 bean 객체가 소멸될 때(=IoC 컨테이너가 종료될 때) 호출된다.
+         *  즉, Spring 애플리케이션이 종료되면서 컨테이너가 소멸되기 전,
+         *  bean의 destroy 메서드가 실행되어 정리 작업(cleanup)을 수행한다.
+         *  ============================================================================================================
+         *  하지만, 애플리케이션이 실행 중인 상태에서 destroy 메서드가 호출되지 않는다.
+         *  가비지 컬렉터(GC)가 bean을 메모리에서 제거할 때 destroy 메서드가 실행되는 것이 아니라,
+         *  Spring 컨테이너가 명시적으로 종료될 때 이 메서드가 호출된다.
+         *  ============================================================================================================
+         *  따라서, 컨테이너가 종료되지 않으면 destroy 메서드가 호출되지 않기 때문에,
+         *  아래와 같이 강제로 컨테이너를 종료시키는 close() 메서드를 호출하면 bean들이 소멸되면서
+         *  destroy 메서드가 실행되는 것을 확인할 수 있다.
          * */
+        ((AnnotationConfigApplicationContext) context).close();
     }
 }

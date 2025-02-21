@@ -1,4 +1,4 @@
-package com.ohgiraffers.section01.scope.subsection01.singleton;
+package com.ohgiraffers.section01.scope.subsection02.prototype;
 
 import com.ohgiraffers.common.Beverage;
 import com.ohgiraffers.common.Bread;
@@ -29,8 +29,7 @@ public class ContextConfiguration {
     }
 
     @Bean
-//    @Scope("")
-//    @Scope("singleton")
+    /* 디폴트값인 "singleton"에서 "prototype"으로 bean scope를 변경 */
     @Scope("prototype")
     public ShoppingCart cart() {
         return new ShoppingCart();

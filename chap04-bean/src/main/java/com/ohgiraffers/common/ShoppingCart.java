@@ -1,13 +1,14 @@
 package com.ohgiraffers.common;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class ShoppingCart {
 
     private final List<Product> items;
 
-    public ShoppingCart(List<Product> items) {
-        this.items = items;
+    public ShoppingCart() {
+        items = new ArrayList<>();
     }
 
     // 카트에 물품 담는 메서드

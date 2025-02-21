@@ -4,32 +4,33 @@ import java.util.Date;
 
 public class Bread extends Product {
 
-    private Date bakedBate;     // 빵 나온 시간
+    private Date bakedDate;     // 빵 나온 시간
 
     public Bread() {
     }
 
-    public Bread(Date bakedBate) {
-        this.bakedBate = bakedBate;
+    public Bread(Date bakedDate) {
+        this.bakedDate = bakedDate;
     }
 
-    public Bread(String name, int price, Date bakedBate) {
+    public Bread(String name, int price, Date bakedDate) {
         super(name, price);
-        this.bakedBate = bakedBate;
+        this.bakedDate = bakedDate;
     }
 
-    public Date getBakedBate() {
-        return bakedBate;
+    public Date getBakedDate() {
+        return bakedDate;
     }
 
-    public void setBakedBate(Date bakedBate) {
-        this.bakedBate = bakedBate;
+    public void setBakedDate(Date bakedDate) {
+        this.bakedDate = bakedDate;
     }
+
 
     @Override
     public String toString() {
         return "Bread{" +
-                "bakedBate=" + bakedBate +
-                '}';
+                "bakedBate=" + bakedDate +
+                "} " + super.toString();
     }
 }
