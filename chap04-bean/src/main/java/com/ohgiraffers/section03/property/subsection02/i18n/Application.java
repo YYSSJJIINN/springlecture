@@ -28,10 +28,10 @@ public class Application {
         ApplicationContext context =
                 new AnnotationConfigApplicationContext(ContextConfiguration.class);
 
-        /* getNessage() :
+        /* getMessage() :
          * 컨텍스트가 관리중인 bean 타입 중, ReloadableResourceBundleMessageSource 타입을 찾는다.
          * 그리고 찾은 빈의 속성 중 setBasename을 참조해 메세지 자원의 위치를 알 수 있다.
-         * 이 때, 해당 위치에 파일이 여러개 있다면 전달받으 ㄴ파라미터로 메세지 파일을 구분할 수 있다.
+         * 이 때, 해당 위치에 파일이 여러개 있다면 전달받은 파라미터로 메세지 파일을 구분할 수 있다.
          * */
         String error404MessageKR = context.getMessage("error.404", null, Locale.KOREA);
         System.out.println("i18n error.404 메세지(KR) : " + error404MessageKR);
