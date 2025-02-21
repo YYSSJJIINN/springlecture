@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Map;
 
 @Service("pokemonServiceCollection")
 public class PokemonService {
@@ -15,14 +16,30 @@ public class PokemonService {
      * */
 
     /* 1. List 타입으로 주입 */
-    private final List<Pokemon> pokemonList;
+//    private final List<Pokemon> pokemonList;
+//
+//    @Autowired
+//    public PokemonService(List<Pokemon> pokemonList) {
+//        this.pokemonList = pokemonList;
+//    }
+//
+//    public void pokemonAttack() {
+//        pokemonList.forEach(Pokemon :: attack);
+//    }
+
+    /* 2. Map 타입으로 주입 */
+    private final Map<String, Pokemon> pokemonMap;
 
     @Autowired
-    public PokemonService(List<Pokemon> pokemonList) {
-        this.pokemonList = pokemonList;
+    public PokemonService(Map<String, Pokemon> pokemonMap) {
+        this.pokemonMap = pokemonMap;
     }
 
     public void pokemonAttack() {
-        pokemonList.forEach(Pokemon :: attack);
+        pokemonMap.forEach((k, v) -> {
+            System.out.println("포켓몬 이름 : " + k);
+            System.out.println("공격 : ");
+            v.attack();
+        });
     }
 }
