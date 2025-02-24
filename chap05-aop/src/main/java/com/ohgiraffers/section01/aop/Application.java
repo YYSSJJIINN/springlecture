@@ -19,5 +19,6 @@ public class Application {
 
         System.out.println("---------- selectMemberById 호출 ----------");
         System.out.println(memberService.selectMemberById(456));
+        System.out.println(memberService.selectMemberById(777));    // 오류가 뜨는 이유는 목차2번에 해당한다.
     }
 }

@@ -38,8 +38,12 @@ dependencies {
     // https://mvnrepository.com/artifact/jakarta.inject/jakarta.inject-api
     implementation 'jakarta.inject:jakarta.inject-api:2.0.1'
 
+    /* AOP 실습을 위한 추가 라이브러리 AspectJ */
     // https://mvnrepository.com/artifact/org.aspectj/aspectjweaver
     implementation 'org.aspectj:aspectjweaver:1.9.22.1'
+    // https://mvnrepository.com/artifact/org.aspectj/aspectjrt
+    implementation 'org.aspectj:aspectjrt:1.9.22.1'
+
 
 }
 

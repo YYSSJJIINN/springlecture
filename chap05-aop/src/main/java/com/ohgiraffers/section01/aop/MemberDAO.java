@@ -26,7 +26,7 @@ public class MemberDAO {
 
         MemberDTO foundMember = memberMap.get(memberId);
 
-        if(foundMember == null) {
+        if(foundMember == null) {   // 없는 회원을 달라고 했을때~
             throw new RuntimeException("MemberDAO의 selectMemberById : 해당하는 id의 회원이 없습니다!");
         }
 
